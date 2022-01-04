@@ -1,7 +1,2 @@
-in studentCard => create a state - object/arr
-
-pass array up to parent
-
-in studentlist - > array of objects [{asdasba,asdasd,}]
-
-filter method => arrayo f objects === (good)
+make sure tags get passed into student list to make sure they are saved to the object
+create filter students for tags and names

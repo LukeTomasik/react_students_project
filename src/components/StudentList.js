@@ -1,13 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
 import StudentCard from "./StudentCard";
 
 const StudentList = () => {
-  const [students, setStudentData] = useState([]);
-  const [error, setError] = useState(false);
 
+  const [nameInput,setNameInput]=useState('')
+  
+    const [students, setStudentData] = useState([]);
+    const [error, setError] = useState(false);
+    
   useEffect(() => {
     fetchStudentData();
   }, []);
+
+
 
   async function fetchStudentData() {
     try {
@@ -20,19 +25,20 @@ const StudentList = () => {
 
       // Remake prop names into a object with simpler names
 
-      const singlularStudent = data.students.map((el) => (
-        <StudentCard
-          key={el.id}
-          id={el.id}
-          firstName={el.firstName}
-          lastName={el.lastName}
-          pic={el.pic}
-          email={el.email}
-          company={el.company}
-          skill={el.skill}
-          grades={el.grades}
-        />
-      ));
+      const singlularStudent = data.students.map((el) => {
+        return {
+          key: el.id,
+          id: el.id,
+          firstName: el.firstName,
+          lastName: el.lastName,
+          pic: el.pic,
+          email: el.email,
+          company: el.company,
+          skill: el.skill,
+          grades: el.grades,
+          tags: [],
+        };
+      });
 
       setStudentData(singlularStudent);
     } catch (err) {
@@ -40,13 +46,45 @@ const StudentList = () => {
     }
   }
 
+  
+  const filterNameHandler = (event)=> {
+    if (event.keyCode === 13) {
+      // setNameInput(event.target.value)
+      const filteredStudents = students.filter(el => el.firstName.includes(event.target.value))
+      
+    }
+    
+  }
+  
+
+
+
+  // changes my students array according to names and tags
+  // setStudents() => my
+
   return (
     <div>
       <div>
-        <input type="text" placeholder="Filter By Name"></input>
+        <input onKeyDown={filterNameHandler}  type="text" placeholder="Filter By Name"></input>
         <input type="text" placeholder="Filter By Tag"></input>
       </div>
-      <div>{students}</div>
+      <div>
+        {students.map((el) => (
+          <StudentCard
+            firstName={el.firstName}
+            lastName={el.lastName}
+            pic={el.pic}
+            email={el.email}
+            company={el.company}
+            grades={el.grades}
+            city={el.city}
+            skill={el.skill}
+            key={el.id}
+            tags={el.tags}
+          />
+        ))}
+        
+      </div>
     </div>
   );
 };

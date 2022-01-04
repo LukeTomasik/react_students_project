@@ -1,7 +1,21 @@
+import {useState,useRef} from 'react'
+
+
 const StudentCard = (props) => {
+  const [userTags,setUserTags]=useState(props.tags)
+
+
+  function inputEntry(event) {
+    if (event.keyCode === 13) {
+      console.log(event.target.value)
+      setUserTags([...userTags,event.target.value])
+      console.log(userTags)
+      event.target.value=''
+    }
+    
+  }
 
     const average = (props.grades.reduce((a,b) => (+a) + (+b)) / props.grades.length).toFixed(2)
-
 
     const testScores = props.grades.map(el=> <li key={Math.random()*100}>{el}</li>)
     
@@ -29,12 +43,11 @@ const StudentCard = (props) => {
           </div>
           <div>
             <ul>
-              <li>tag1</li>
-              <li>tag2</li>
+             {userTags.map(el=> <li key={Math.random()}>{el}</li>)}
             </ul>
           </div>
           <div>
-            <input type="text" placeholder="Add a Tag"></input>
+            <input onKeyDown={inputEntry} type="text" placeholder="Add a Tag"></input>
           </div>
         </div>
       </div>
