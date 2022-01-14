@@ -1,16 +1,15 @@
 import { useState, useEffect, useCallback } from "react";
 import StudentCard from "./StudentCard";
+
 const StudentList = () => {
   const [nameInput, setNameInput] = useState("");
-  const [tagInput, setTagInput] = useState("tag1");
+  const [tagInput, setTagInput] = useState("");
   const [students, setStudentData] = useState([]);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     fetchStudentData();
   }, []);
-
-
 
   const saveUserTags = (event) => {
     //  let student = students.find(el => el.id == event.id)
@@ -48,7 +47,7 @@ const StudentList = () => {
           company: el.company,
           skill: el.skill,
           grades: el.grades,
-          tags: ['tag1'],
+          tags: [],
         };
       });
       setStudentData(singlularStudent);
@@ -66,16 +65,15 @@ const StudentList = () => {
     setTagInput(event.target.value);
   };
 
-  const filteredStudents = students.filter(
+  let filteredStudents = students.filter(
     (el) => el.firstName.includes(nameInput) || el.lastName.includes(nameInput)
-  ) || students.filter((el) => el.tags.includes(tagInput));
-  // const filteredStudents = students.filter((el) => el.tags.includes(tagInput));
-  // console.log(students)
+  );
+  console.log(filteredStudents);
 
-
-
-  // changes my students array according to names and tags
-  // setStudents() => my
+  const filteredTags = filteredStudents.filter((el) =>
+    el.tags.join("").includes(tagInput)
+  );
+  console.log(filteredTags);
 
   return (
     <div>
@@ -92,7 +90,7 @@ const StudentList = () => {
         ></input>
       </div>
       <div>
-        {filteredStudents.map((el) => (
+        {filteredTags.map((el) => (
           <StudentCard
             id={el.id}
             firstName={el.firstName}
