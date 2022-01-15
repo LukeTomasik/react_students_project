@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@500&family=Roboto:wght@700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --mainFont: "Roboto", sans-serif;
+  --secondaryFont: "Raleway", sans-serif;
+}
+
+.listSizing {
+  border-radius: 8px;
+  border: 2px solid red;
+  width: 50%;
+  height: 90%;
+  content: contain;
+  overflow-y: scroll;
+}
+.listSizing::-webkit-scrollbar {
+  width: 6px;
+  background: rgb(215, 233, 252);
+  outline: none;
+}
+.listSizing::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: red;
+}
+.listSizing::-webkit-scrollbar-track {
+  width: 1px;
+  background: rgb(30, 125, 219);
+  outline: none;
+}
+
+.searchWrapper {
+  display: flex;
+  flex-direction: column;
+}
+.searchWrapper input {
+  font-family: var(--secondaryFont);
+  border-top-style: hidden;
+  border-left-style: hidden;
+  border-right-style: hidden;
+  border-bottom-style: solid;
+  padding-bottom: 5px;
+  margin: 8px;
+  font-size: 1.1rem;
+}
+.searchWrapper input:focus {
+  outline: none;
+}
+.searchWrapper input:focus-within {
+  border-bottom: 2px solid black;
+}
+.searchWrapper input::placeholder {
+  color: lightslategray;
+}
+.studentListWrapper {
+  height: 100%;
+}

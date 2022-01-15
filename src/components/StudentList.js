@@ -1,8 +1,9 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import StudentCard from "./StudentCard";
-
+import classes from "./StudentList.module.css";
 const StudentList = () => {
   const [nameInput, setNameInput] = useState("");
+
   const [tagInput, setTagInput] = useState("");
   const [students, setStudentData] = useState([]);
   const [error, setError] = useState(false);
@@ -12,7 +13,7 @@ const StudentList = () => {
   }, []);
 
   const saveUserTags = (event) => {
-    //  let student = students.find(el => el.id == event.id)
+    // let student = students.find((el) => el.id == event.id);
     const newStudents = students.map((el) => {
       if (el.id === event.id) {
         return { ...el, tags: [...el.tags, event.tags] };
@@ -40,8 +41,8 @@ const StudentList = () => {
         return {
           key: el.id,
           id: el.id,
-          firstName: el.firstName,
-          lastName: el.lastName,
+          firstName: el.firstName.toUpperCase(),
+          lastName: el.lastName.toUpperCase(),
           pic: el.pic,
           email: el.email,
           company: el.company,
@@ -52,32 +53,30 @@ const StudentList = () => {
       });
       setStudentData(singlularStudent);
     } catch (err) {
-      console.log(err);
+      setError(err);
+      console.log(error);
     }
   }
 
   const filterNameHandler = (event) => {
-    setNameInput(event.target.value);
+    setNameInput(event.target.value.toUpperCase());
   };
 
   const filterTagHandler = (event) => {
-    console.log(event.target.value);
     setTagInput(event.target.value);
   };
 
   let filteredStudents = students.filter(
     (el) => el.firstName.includes(nameInput) || el.lastName.includes(nameInput)
   );
-  console.log(filteredStudents);
 
   const filteredTags = filteredStudents.filter((el) =>
     el.tags.join("").includes(tagInput)
   );
-  console.log(filteredTags);
 
   return (
-    <div>
-      <div>
+    <div className={classes.listSizing}>
+      <div className={classes.searchWrapper}>
         <input
           onChange={filterNameHandler}
           type="text"
@@ -89,7 +88,7 @@ const StudentList = () => {
           placeholder="Filter By Tag"
         ></input>
       </div>
-      <div>
+      <div className={classes.studentListWrapper}>
         {filteredTags.map((el) => (
           <StudentCard
             id={el.id}

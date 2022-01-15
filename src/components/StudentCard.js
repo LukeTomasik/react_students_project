@@ -1,12 +1,17 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
+import classes from "./StudentCard.module.css";
 
 const StudentCard = (props) => {
   const [userTags, setUserTags] = useState(props.tags);
+  const [hideScores, setHideScores] = useState(false);
+
+  function hideScoresHandler() {
+    setHideScores(!hideScores);
+  }
 
   function inputEntry(event) {
     if (event.keyCode === 13) {
       setUserTags([...userTags, event.target.value]);
-
       props.onSaveUserTags({ id: props.id, tags: event.target.value });
       event.target.value = "";
     }
@@ -21,26 +26,23 @@ const StudentCard = (props) => {
   ));
 
   return (
-    <div>
-      <div>
-        <img src={props.pic}></img>
+    <div className={classes.studentName}>
+      <div className={classes.studentImage}>
+        <img src={props.pic} alt="student Pic"></img>
       </div>
-      <div>
-        <div>
-          <h1>
-            {props.firstName}
-            {props.lastName}
-          </h1>
-          <p>+</p>
+      <div className={classes.studentInfoWrapper}>
+        <div className={classes.studentButton}>
+          <h1>{`${props.firstName} ${props.lastName}`}</h1>
+          <button onClick={hideScoresHandler}>+</button>
         </div>
-        <div>
+        <div className={classes.studentInfo}>
           <ul>
             <li>Email: {props.email}</li>
             <li>Company: {props.company}</li>
             <li>Skill: {props.skill}</li>
             <li>Average: {average}%</li>
           </ul>
-          <div>
+          <div className={!hideScores ? classes.hideTestScores : ""}>
             <ul>{testScores}</ul>
           </div>
           <div>

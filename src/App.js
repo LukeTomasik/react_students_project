@@ -1,16 +1,12 @@
-import { Fragment } from "react";
+import AppWrapper from "./components/AppWrapper";
 import StudentList from "./components/StudentList";
 
-
 function App() {
- 
-
   return (
-
-  <Fragment >
-    <StudentList/>
-  </Fragment>
-  )
+    <AppWrapper>
+      <StudentList />
+    </AppWrapper>
+  );
 }
 
 export default App;

@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&family=Roboto:wght@700&display=swap");
+* {
+  box-sizing: border-box;
+}
+:root {
+  --mainFont: "Roboto", sans-serif;
+  --secondaryFont: "Raleway", sans-serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.studentName {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.studentName h1 {
+  font-family: var(--mainFont);
+}
+
+.studentImage {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 25%;
+}
+
+.studentImage img {
+  border: 1px solid black;
+  width: 90%;
+  border-radius: 50%;
+  margin-top: 20%;
+}
+
+.studentInfoWrapper {
+  width: 75%;
+}
+.studentButton {
+  display: flex;
+  justify-content: space-between;
+}
+.studentButton button {
+  border: 1px solid red;
+  margin-right: 10px;
+}
+.studentInfo {
+  font-family: var(--secondaryFont);
+}
+.hideTestScores {
+  display: none;
+}
