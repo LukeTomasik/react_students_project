@@ -21,8 +21,11 @@ const StudentCard = (props) => {
     props.grades.reduce((a, b) => +a + +b) / props.grades.length
   ).toFixed(2);
 
-  const testScores = props.grades.map((el) => (
-    <li key={Math.random() * 100}>{el}</li>
+  const testScores = props.grades.map((el, index) => (
+    <li key={Math.random() * 100}>
+      {`Test${index + 1}:  
+      ${el}%`}
+    </li>
   ));
 
   return (
@@ -33,7 +36,7 @@ const StudentCard = (props) => {
       <div className={classes.studentInfoWrapper}>
         <div className={classes.studentButton}>
           <h1>{`${props.firstName} ${props.lastName}`}</h1>
-          <button onClick={hideScoresHandler}>+</button>
+          <button onClick={hideScoresHandler}>{!hideScores ? "+" : "-"}</button>
         </div>
         <div className={classes.studentInfo}>
           <ul>
@@ -46,13 +49,13 @@ const StudentCard = (props) => {
             <ul>{testScores}</ul>
           </div>
           <div>
-            <ul>
+            <ul className={classes.studentTagWrapper}>
               {userTags.map((el) => (
                 <li key={Math.random()}>{el}</li>
               ))}
             </ul>
           </div>
-          <div>
+          <div className={classes.searchWrapper}>
             <input
               onKeyDown={inputEntry}
               type="text"

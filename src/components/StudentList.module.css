@@ -10,25 +10,28 @@
 }
 
 .listSizing {
+  border: 2px solid grey;
   border-radius: 8px;
-  border: 2px solid red;
-  width: 50%;
+  width: 60%;
   height: 90%;
   content: contain;
   overflow-y: scroll;
 }
 .listSizing::-webkit-scrollbar {
-  width: 6px;
-  background: rgb(215, 233, 252);
+  border-radius: 8px;
+  width: 4px;
+  background: white;
   outline: none;
 }
 .listSizing::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background: red;
+  background: rgb(92, 92, 92);
 }
 .listSizing::-webkit-scrollbar-track {
+  margin-block: 90px;
+  border-radius: 10px;
   width: 1px;
-  background: rgb(30, 125, 219);
+  background: white;
   outline: none;
 }
 
