@@ -36,7 +36,13 @@ const StudentCard = (props) => {
       <div className={classes.studentInfoWrapper}>
         <div className={classes.studentButton}>
           <h1>{`${props.firstName} ${props.lastName}`}</h1>
-          <button onClick={hideScoresHandler}>{!hideScores ? "+" : "-"}</button>
+          <button onClick={hideScoresHandler}>
+            {!hideScores ? (
+              <i class="fas fa-plus"></i>
+            ) : (
+              <i class="fas fa-minus"></i>
+            )}
+          </button>
         </div>
         <div className={classes.studentInfo}>
           <ul>
